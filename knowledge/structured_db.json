@@ -1,0 +1,204 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-03-04T22:45:00.835259+02:00",
+  "sources": [
+    {
+      "tool": "cursor",
+      "files": [
+        {
+          "path": "db_changes.md"
+        },
+        {
+          "path": "install_notes.md"
+        },
+        {
+          "path": "instructions.md"
+        },
+        {
+          "path": "ui_guidelines.md"
+        }
+      ]
+    },
+    {
+      "tool": "claude",
+      "files": [
+        {
+          "path": "install_guide.md"
+        },
+        {
+          "path": "planning.md"
+        },
+        {
+          "path": "system_spec.md"
+        },
+        {
+          "path": "technical_constraints.md"
+        }
+      ]
+    }
+  ],
+  "items": {
+    "decisions": [
+      {
+        "id": "dec-001",
+        "title": "Use Cohere LLM for query classification",
+        "summary": "Decided to use Cohere's command-r-08-2024 model for dynamic query routing classification",
+        "tags": [
+          "llm",
+          "cohere",
+          "classification"
+        ],
+        "source": {
+          "tool": "cursor",
+          "file": "system_spec.md",
+          "anchor": "#nlp",
+          "line_range": [
+            45,
+            65
+          ]
+        },
+        "observed_at": "2026-03-04T22:45:00.835259+02:00"
+      },
+      {
+        "id": "dec-002",
+        "title": "Hybrid RAG with semantic and structured retrieval",
+        "summary": "Implement dual-path retrieval: vector search for semantic queries and structured DB for precise lookups",
+        "tags": [
+          "rag",
+          "retrieval",
+          "hybrid"
+        ],
+        "source": {
+          "tool": "cursor",
+          "file": "planning.md",
+          "anchor": "#phase-c",
+          "line_range": [
+            78,
+            98
+          ]
+        },
+        "observed_at": "2026-03-04T22:45:00.835259+02:00"
+      },
+      {
+        "id": "dec-003",
+        "title": "Pinecone for vector storage",
+        "summary": "Selected Pinecone as vector database for semantic embeddings and similarity search",
+        "tags": [
+          "database",
+          "vector",
+          "pinecone"
+        ],
+        "source": {
+          "tool": "claude",
+          "file": "install_guide.md",
+          "anchor": "#setup",
+          "line_range": [
+            120,
+            140
+          ]
+        },
+        "observed_at": "2026-03-04T22:45:00.835259+02:00"
+      }
+    ],
+    "rules": [
+      {
+        "id": "rule-001",
+        "rule": "All API calls must include proper error handling and retry logic",
+        "scope": "backend",
+        "notes": "Retry up to 3 times with exponential backoff for transient failures",
+        "source": {
+          "tool": "cursor",
+          "file": "technical_constraints.md",
+          "anchor": "#api",
+          "line_range": [
+            10,
+            25
+          ]
+        },
+        "observed_at": "2026-03-04T22:45:00.835259+02:00"
+      },
+      {
+        "id": "rule-002",
+        "rule": "UI form validation must happen client-side before submission",
+        "scope": "ui",
+        "notes": "Server-side validation is required as fallback, but JS validation improves UX",
+        "source": {
+          "tool": "cursor",
+          "file": "ui_guidelines.md",
+          "anchor": "#forms",
+          "line_range": [
+            55,
+            75
+          ]
+        },
+        "observed_at": "2026-03-04T22:45:00.835259+02:00"
+      },
+      {
+        "id": "rule-003",
+        "rule": "Database queries must use parameterized statements only",
+        "scope": "database",
+        "notes": "No string concatenation for SQL to prevent injection attacks",
+        "source": {
+          "tool": "claude",
+          "file": "technical_constraints.md",
+          "anchor": "#security",
+          "line_range": [
+            145,
+            165
+          ]
+        },
+        "observed_at": "2026-03-04T22:45:00.835259+02:00"
+      }
+    ],
+    "warnings": [
+      {
+        "id": "warn-001",
+        "area": "auth",
+        "message": "Authentication tokens expire after 1 hour - implement refresh token mechanism",
+        "severity": "high",
+        "source": {
+          "tool": "cursor",
+          "file": "system_spec.md",
+          "anchor": "#auth",
+          "line_range": [
+            200,
+            220
+          ]
+        },
+        "observed_at": "2026-03-04T22:45:00.835259+02:00"
+      },
+      {
+        "id": "warn-002",
+        "area": "db",
+        "message": "Unoptimized queries can cause performance degradation with large datasets",
+        "severity": "medium",
+        "source": {
+          "tool": "cursor",
+          "file": "technical_constraints.md",
+          "anchor": "#performance",
+          "line_range": [
+            300,
+            320
+          ]
+        },
+        "observed_at": "2026-03-04T22:45:00.835259+02:00"
+      },
+      {
+        "id": "warn-003",
+        "area": "security",
+        "message": "Sensitive data must never be logged to console or persistent logs",
+        "severity": "high",
+        "source": {
+          "tool": "claude",
+          "file": "install_notes.md",
+          "anchor": "#security",
+          "line_range": [
+            85,
+            105
+          ]
+        },
+        "observed_at": "2026-03-04T22:45:00.835259+02:00"
+      }
+    ]
+  }
+}

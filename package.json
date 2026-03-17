@@ -1,0 +1,38 @@
+{
+  "name": "task-management-knowledge-base",
+  "version": "1.0.0",
+  "description": "Knowledge Base Pipeline for Task Management System - Processes documentation into RAG-ready chunks",
+  "main": "src/index.js",
+  "scripts": {
+    "build-kb": "node src/index.js",
+    "test": "echo \"No tests configured yet\""
+  },
+  "keywords": [
+    "rag",
+    "knowledge-base",
+    "semantic-search",
+    "documentation",
+    "chunking",
+    "embeddings"
+  ],
+  "author": "Senior Backend Engineer & RAG Architect",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "notes": {
+    "architecture": "Modular pipeline with 8 processing phases",
+    "phases": [
+      "1. Collect files from cursor_docs/ and claude_docs/",
+      "2. Copy to knowledge/raw",
+      "3. Clean and normalize Markdown",
+      "4. Sanitize for RAG (remove tables, code blocks)",
+      "5. Intelligent chunking (300-800 words)",
+      "6. Extract and enrich metadata",
+      "7. Save chunks as markdown files",
+      "8. Generate knowledge-base.json"
+    ]
+  }
+}
