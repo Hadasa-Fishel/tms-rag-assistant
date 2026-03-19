@@ -29,6 +29,7 @@ from llama_index.core.workflow import (
     StopEvent,
     step,
 )
+
 from llama_index.core.schema import BaseNode, TextNode, NodeWithScore
 from llama_index.core import VectorStoreIndex, StorageContext, Settings
 from llama_index.core.llms import ChatMessage
@@ -36,11 +37,7 @@ from llama_index.embeddings.cohere import CohereEmbedding
 from llama_index.vector_stores.pinecone import PineconeVectorStore
 from llama_index.llms.cohere import Cohere
 from pinecone import Pinecone
-
-
-# =====================================================
-# 1. CUSTOM EVENTS
-# =====================================================
+from llama_index.utils.workflow import draw_all_possible_flows
 
 class InputValidatedEvent(Event):
     """Emitted when input validation succeeds."""
@@ -93,17 +90,13 @@ class WorkflowCompletedEvent(Event):
 
 class RouteDecisionEvent(Event):
     """Emitted when query is classified for routing."""
-    route_type: str  # "SEMANTIC" or "STRUCTURED"
+    route_type: str  
     reason: str
     original_query: str
     timestamp: str = field(default_factory=lambda: datetime.now().isoformat())
 
 
-# =====================================================
-# 2. RAG STATE CLASS
-# =====================================================
 
-@dataclass
 class RAGState:
     """Central state container for workflow execution."""
     original_query: str
@@ -971,7 +964,9 @@ class RAGQueryEngine:
 async def main():
     """Demo function to test the RAG workflow."""
     engine = RAGQueryEngine()
-
+    print("\n[INFO] Generating workflow graph...")
+    draw_all_possible_flows(engine.workflow, filename="workflow_graph.html")
+    print("[INFO] Graph saved to workflow_graph.html\n")
     test_queries = [
         "What are the key performance considerations for database queries?",
         "Migration history and schema changes",
