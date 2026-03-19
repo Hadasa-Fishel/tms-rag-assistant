@@ -26,24 +26,25 @@ Below is the generated execution graph of the workflow, showcasing the events an
 ## 🚀 Quick Start
 
 
-1. Clone the repository
+### 1. Clone the repository
 ```bash
 git clone https://github.com/Hadasa-Fishel/tms-rag-assistant.git
 cd tms-rag-assistant
-
-2. Install dependencies
-Bash
+```
+### 2. Install dependencies
+bash
 pip install -r requirements.txt
 (Note: Ensure you have llama-index, llama-index-utils-workflow, pinecone-client, cohere, gradio, and python-dotenv installed).
 
-3. Environment Variables
+### 3. Environment Variables
+``
 Create a .env file in the root directory and add your API keys:
 
 Plaintext
 COHERE_API_KEY=your_cohere_key_here
 PINECONE_API_KEY=your_pinecone_key_here
 
-4. Run the Application
+### 4. Run the Application
 To run the terminal-based query engine and generate the workflow HTML graph:
 
 Bash
@@ -53,7 +54,7 @@ To launch the interactive web UI:
 Bash
 python ui_app.py
 
-📂 Project Structure
+### 📂 Project Structure
 rag_workflow.py: The core LlamaIndex event-driven logic and state management.
 
 ui_app.py: Gradio web interface implementation.
