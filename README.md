@@ -27,8 +27,9 @@ Below is the generated execution graph of the workflow, showcasing the events an
 
 ### 1. Clone the repository
 ```bash
-git clone [https://github.com/Hadasa-Fishel/tms-rag-assistant.git](https://github.com/Hadasa-Fishel/tms-rag-assistant.git)
+git clone https://github.com/Hadasa-Fishel/tms-rag-assistant.git
 cd tms-rag-assistant
+
 2. Install dependencies
 Bash
 pip install -r requirements.txt
@@ -40,6 +41,7 @@ Create a .env file in the root directory and add your API keys:
 Plaintext
 COHERE_API_KEY=your_cohere_key_here
 PINECONE_API_KEY=your_pinecone_key_here
+
 4. Run the Application
 To run the terminal-based query engine and generate the workflow HTML graph:
 
@@ -49,6 +51,7 @@ To launch the interactive web UI:
 
 Bash
 python ui_app.py
+
 📂 Project Structure
 rag_workflow.py: The core LlamaIndex event-driven logic and state management.
 
